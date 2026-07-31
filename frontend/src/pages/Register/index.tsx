@@ -4,7 +4,7 @@ import { useMutation } from "@apollo/client/react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { Eye, EyeOff, Lock, LogIn, Mail, User, UserPlus } from "lucide-react";
+import { Eye, EyeOff, Lock, LogIn, Mail, UserRound } from "lucide-react";
 import { toast } from "sonner";
 import { Logo } from "@/components/Logo";
 import { Button } from "@/components/ui/button";
@@ -55,7 +55,7 @@ export function RegisterPage() {
 
       <div className="w-full max-w-md rounded-2xl border border-border bg-card p-10">
         <div className="mb-8 text-center">
-          <h1 className="text-2xl font-bold text-foreground">Criar conta</h1>
+          <h1 className="text-xl font-bold text-foreground">Criar conta</h1>
           <p className="mt-1 text-sm text-muted-foreground">Comece a controlar suas finanças ainda hoje</p>
         </div>
 
@@ -63,7 +63,7 @@ export function RegisterPage() {
           <div className="space-y-2">
             <Label htmlFor="name">Nome completo</Label>
             <div className="relative">
-              <User className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+              <UserRound className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-placeholder" />
               <Input
                 id="name"
                 placeholder="Seu nome completo"
@@ -77,7 +77,7 @@ export function RegisterPage() {
           <div className="space-y-2">
             <Label htmlFor="email">E-mail</Label>
             <div className="relative">
-              <Mail className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+              <Mail className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-placeholder" />
               <Input
                 id="email"
                 type="email"
@@ -92,7 +92,7 @@ export function RegisterPage() {
           <div className="space-y-2">
             <Label htmlFor="password">Senha</Label>
             <div className="relative">
-              <Lock className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+              <Lock className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-placeholder" />
               <Input
                 id="password"
                 type={showPassword ? "text" : "password"}
@@ -103,7 +103,7 @@ export function RegisterPage() {
               <button
                 type="button"
                 onClick={() => setShowPassword((v) => !v)}
-                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-muted-foreground"
+                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-foreground-muted"
                 aria-label={showPassword ? "Ocultar senha" : "Mostrar senha"}
               >
                 {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
@@ -112,17 +112,16 @@ export function RegisterPage() {
             {errors.password ? (
               <p className="text-sm text-destructive">{errors.password.message}</p>
             ) : (
-              <p className="text-sm text-muted-foreground">A senha deve ter no mínimo 8 caracteres</p>
+              <p className="text-sm text-subtle-foreground">A senha deve ter no mínimo 8 caracteres</p>
             )}
           </div>
 
           <Button type="submit" className="w-full" disabled={isSubmitting}>
-            <UserPlus className="h-4 w-4" />
             Cadastrar
           </Button>
         </form>
 
-        <div className="my-6 flex items-center gap-3 text-xs text-muted-foreground">
+        <div className="my-6 flex items-center gap-3 text-xs text-subtle-foreground">
           <div className="h-px flex-1 bg-border" />
           ou
           <div className="h-px flex-1 bg-border" />

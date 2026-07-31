@@ -4,7 +4,7 @@ import { useMutation } from "@apollo/client/react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { Eye, EyeOff, Lock, LogIn, Mail, UserPlus } from "lucide-react";
+import { Eye, EyeOff, Lock, Mail, UserRoundPlus } from "lucide-react";
 import { toast } from "sonner";
 import { Logo } from "@/components/Logo";
 import { Button } from "@/components/ui/button";
@@ -54,7 +54,7 @@ export function LoginPage() {
 
       <div className="w-full max-w-md rounded-2xl border border-border bg-card p-10">
         <div className="mb-8 text-center">
-          <h1 className="text-2xl font-bold text-foreground">Fazer login</h1>
+          <h1 className="text-xl font-bold text-foreground">Fazer login</h1>
           <p className="mt-1 text-sm text-muted-foreground">Entre na sua conta para continuar</p>
         </div>
 
@@ -62,7 +62,7 @@ export function LoginPage() {
           <div className="space-y-2">
             <Label htmlFor="email">E-mail</Label>
             <div className="relative">
-              <Mail className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+              <Mail className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-placeholder" />
               <Input
                 id="email"
                 type="email"
@@ -77,7 +77,7 @@ export function LoginPage() {
           <div className="space-y-2">
             <Label htmlFor="password">Senha</Label>
             <div className="relative">
-              <Lock className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+              <Lock className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-placeholder" />
               <Input
                 id="password"
                 type={showPassword ? "text" : "password"}
@@ -88,7 +88,7 @@ export function LoginPage() {
               <button
                 type="button"
                 onClick={() => setShowPassword((v) => !v)}
-                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-muted-foreground"
+                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-foreground-muted"
                 aria-label={showPassword ? "Ocultar senha" : "Mostrar senha"}
               >
                 {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
@@ -98,7 +98,7 @@ export function LoginPage() {
           </div>
 
           <div className="flex items-center justify-between text-sm">
-            <label className="flex items-center gap-2 text-foreground">
+            <label className="flex items-center gap-2 text-foreground-muted">
               <input type="checkbox" className="h-4 w-4 rounded border-border accent-primary" />
               Lembrar-me
             </label>
@@ -108,12 +108,11 @@ export function LoginPage() {
           </div>
 
           <Button type="submit" className="w-full" disabled={isSubmitting}>
-            <LogIn className="h-4 w-4" />
             Entrar
           </Button>
         </form>
 
-        <div className="my-6 flex items-center gap-3 text-xs text-muted-foreground">
+        <div className="my-6 flex items-center gap-3 text-xs text-subtle-foreground">
           <div className="h-px flex-1 bg-border" />
           ou
           <div className="h-px flex-1 bg-border" />
@@ -122,7 +121,7 @@ export function LoginPage() {
         <p className="mb-4 text-center text-sm text-muted-foreground">Ainda não tem uma conta?</p>
         <Button variant="outline" className="w-full" asChild>
           <Link to="/cadastro">
-            <UserPlus className="h-4 w-4" />
+            <UserRoundPlus className="h-4 w-4" />
             Criar conta
           </Link>
         </Button>
