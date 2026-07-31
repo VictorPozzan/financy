@@ -30,12 +30,12 @@ export const CATEGORY_ICONS: Record<string, LucideIcon> = {
   utensils: Utensils,
   "paw-print": PawPrint,
   house: House,
-  "book-open": BookOpen,
+  gift: Gift,
   dumbbell: Dumbbell,
+  "book-open": BookOpen,
   "baggage-claim": BaggageClaim,
   mailbox: Mailbox,
   "receipt-text": ReceiptText,
-  gift: Gift,
 };
 
 export const CATEGORY_ICON_NAMES = Object.keys(CATEGORY_ICONS);
@@ -45,23 +45,70 @@ export function getCategoryIcon(icon: string): LucideIcon {
 }
 
 export interface CategoryColorClasses {
+  /** dark shade — badge/tag text, "Entrada"/"Saída" label */
   text: string;
-  bg: string;
+  /** base shade (text utility) — icon fill inside colored square */
+  icon: string;
+  /** base shade (background utility) — color-picker swatch */
   swatch: string;
+  /** light shade — badge/tag background, icon square background */
+  bg: string;
 }
 
 export const CATEGORY_COLORS: Record<string, CategoryColorClasses> = {
-  green: { text: "text-category-green-text", bg: "bg-category-green-bg", swatch: "bg-category-green-text" },
-  blue: { text: "text-category-blue-text", bg: "bg-category-blue-bg", swatch: "bg-category-blue-text" },
-  purple: { text: "text-category-purple-text", bg: "bg-category-purple-bg", swatch: "bg-category-purple-text" },
-  pink: { text: "text-category-pink-text", bg: "bg-category-pink-bg", swatch: "bg-category-pink-text" },
-  red: { text: "text-category-red-text", bg: "bg-category-red-bg", swatch: "bg-category-red-text" },
-  orange: { text: "text-category-orange-text", bg: "bg-category-orange-bg", swatch: "bg-category-orange-text" },
-  yellow: { text: "text-category-yellow-text", bg: "bg-category-yellow-bg", swatch: "bg-category-yellow-text" },
+  green: {
+    text: "text-category-green-text",
+    icon: "text-category-green-icon",
+    swatch: "bg-category-green-icon",
+    bg: "bg-category-green-bg",
+  },
+  blue: {
+    text: "text-category-blue-text",
+    icon: "text-category-blue-icon",
+    swatch: "bg-category-blue-icon",
+    bg: "bg-category-blue-bg",
+  },
+  purple: {
+    text: "text-category-purple-text",
+    icon: "text-category-purple-icon",
+    swatch: "bg-category-purple-icon",
+    bg: "bg-category-purple-bg",
+  },
+  pink: {
+    text: "text-category-pink-text",
+    icon: "text-category-pink-icon",
+    swatch: "bg-category-pink-icon",
+    bg: "bg-category-pink-bg",
+  },
+  red: {
+    text: "text-category-red-text",
+    icon: "text-category-red-icon",
+    swatch: "bg-category-red-icon",
+    bg: "bg-category-red-bg",
+  },
+  orange: {
+    text: "text-category-orange-text",
+    icon: "text-category-orange-icon",
+    swatch: "bg-category-orange-icon",
+    bg: "bg-category-orange-bg",
+  },
+  yellow: {
+    text: "text-category-yellow-text",
+    icon: "text-category-yellow-icon",
+    swatch: "bg-category-yellow-icon",
+    bg: "bg-category-yellow-bg",
+  },
 };
 
 export const CATEGORY_COLOR_NAMES = Object.keys(CATEGORY_COLORS);
 
+const FALLBACK_COLOR: CategoryColorClasses = {
+  text: "text-category-gray-text",
+  icon: "text-category-gray-icon",
+  swatch: "bg-category-gray-icon",
+  bg: "bg-category-gray-bg",
+};
+
 export function getCategoryColor(color: string): CategoryColorClasses {
-  return CATEGORY_COLORS[color] ?? { text: "text-category-gray-text", bg: "bg-category-gray-bg", swatch: "bg-category-gray-text" };
+  return CATEGORY_COLORS[color] ?? FALLBACK_COLOR;
 }
