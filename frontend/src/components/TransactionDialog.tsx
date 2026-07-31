@@ -52,6 +52,7 @@ export function TransactionDialog({ open, onOpenChange, transaction, onSaved }: 
     register,
     handleSubmit,
     reset,
+    watch,
     formState: { errors, isSubmitting },
   } = useForm<TransactionForm>({
     resolver: zodResolver(transactionSchema),
@@ -72,6 +73,8 @@ export function TransactionDialog({ open, onOpenChange, transaction, onSaved }: 
       reset({ type: "EXPENSE", description: "", date: "", amount: "", categoryId: "" });
     }
   }, [open, transaction, reset]);
+
+  const dateValue = watch("date");
 
   const [createTransaction] = useMutation(CREATE_TRANSACTION, {
     refetchQueries: ["ListTransactions", "DashboardSummary", "ListCategories"],
@@ -117,15 +120,15 @@ export function TransactionDialog({ open, onOpenChange, transaction, onSaved }: 
             control={control}
             name="type"
             render={({ field }) => (
-              <div className="grid grid-cols-2 gap-3">
+              <div className="flex rounded-xl border border-border p-2">
                 <button
                   type="button"
                   onClick={() => field.onChange("EXPENSE")}
                   className={cn(
-                    "flex items-center justify-center gap-2 rounded-lg border py-2.5 text-sm font-medium transition-colors",
+                    "flex flex-1 items-center justify-center gap-3 rounded-lg border px-3 py-3.5 text-base transition-colors",
                     field.value === "EXPENSE"
-                      ? "border-destructive text-destructive"
-                      : "border-border text-muted-foreground"
+                      ? "border-category-red-icon bg-background font-medium text-foreground [&_svg]:text-category-red-icon"
+                      : "border-transparent font-normal text-muted-foreground [&_svg]:text-placeholder"
                   )}
                 >
                   <CircleArrowDown className="h-4 w-4" />
@@ -135,10 +138,10 @@ export function TransactionDialog({ open, onOpenChange, transaction, onSaved }: 
                   type="button"
                   onClick={() => field.onChange("INCOME")}
                   className={cn(
-                    "flex items-center justify-center gap-2 rounded-lg border py-2.5 text-sm font-medium transition-colors",
+                    "flex flex-1 items-center justify-center gap-3 rounded-lg border px-3 py-3.5 text-base transition-colors",
                     field.value === "INCOME"
-                      ? "border-success text-success"
-                      : "border-border text-muted-foreground"
+                      ? "border-primary bg-background font-medium text-foreground [&_svg]:text-primary"
+                      : "border-transparent font-normal text-muted-foreground [&_svg]:text-placeholder"
                   )}
                 >
                   <CircleArrowUp className="h-4 w-4" />
@@ -157,13 +160,25 @@ export function TransactionDialog({ open, onOpenChange, transaction, onSaved }: 
           <div className="grid grid-cols-2 gap-3">
             <div className="space-y-2">
               <Label htmlFor="date">Data</Label>
-              <Input id="date" type="date" {...register("date")} />
+              <div className="relative">
+                <Input
+                  id="date"
+                  type="date"
+                  className={cn(!dateValue && "text-transparent")}
+                  {...register("date")}
+                />
+                {!dateValue && (
+                  <span className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-sm text-placeholder">
+                    Selecione
+                  </span>
+                )}
+              </div>
               {errors.date && <p className="text-sm text-destructive">{errors.date.message}</p>}
             </div>
             <div className="space-y-2">
               <Label htmlFor="amount">Valor</Label>
               <div className="relative">
-                <span className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-sm text-muted-foreground">
+                <span className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-sm text-foreground-muted">
                   R$
                 </span>
                 <Input
