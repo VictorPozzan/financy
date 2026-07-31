@@ -5,10 +5,10 @@ import {
   ChevronRight,
   CircleArrowDown,
   CircleArrowUp,
-  Pencil,
+  SquarePen,
   Plus,
   Search,
-  Trash2,
+  Trash,
 } from "lucide-react";
 import { toast } from "sonner";
 import { Input } from "@/components/ui/input";
@@ -98,9 +98,9 @@ export function TransactionsPage() {
 
       <div className="grid grid-cols-1 gap-4 rounded-xl border border-border bg-card p-4 sm:grid-cols-3">
         <div className="space-y-1.5">
-          <label className="text-xs font-medium text-muted-foreground">Buscar</label>
+          <label className="text-xs font-medium text-foreground-muted">Buscar</label>
           <div className="relative">
-            <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+            <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-placeholder" />
             <Input
               placeholder="Buscar por descrição"
               className="pl-10"
@@ -110,7 +110,7 @@ export function TransactionsPage() {
           </div>
         </div>
         <div className="space-y-1.5">
-          <label className="text-xs font-medium text-muted-foreground">Tipo</label>
+          <label className="text-xs font-medium text-foreground-muted">Tipo</label>
           <Select value={type} onValueChange={setType}>
             <SelectTrigger>
               <SelectValue />
@@ -123,7 +123,7 @@ export function TransactionsPage() {
           </Select>
         </div>
         <div className="space-y-1.5">
-          <label className="text-xs font-medium text-muted-foreground">Categoria</label>
+          <label className="text-xs font-medium text-foreground-muted">Categoria</label>
           <Select value={categoryId} onValueChange={setCategoryId}>
             <SelectTrigger>
               <SelectValue />
@@ -143,7 +143,7 @@ export function TransactionsPage() {
       <div className="overflow-x-auto rounded-xl border border-border bg-card">
         <table className="w-full text-sm">
           <thead>
-            <tr className="border-b border-border text-left text-xs font-semibold uppercase text-muted-foreground">
+            <tr className="border-b border-border text-left text-xs font-medium uppercase tracking-wide text-subtle-foreground">
               <th className="px-6 py-3">Descrição</th>
               <th className="px-6 py-3">Data</th>
               <th className="px-6 py-3">Categoria</th>
@@ -169,9 +169,9 @@ export function TransactionsPage() {
                   <td className="px-6 py-3.5">
                     <div className="flex items-center gap-3">
                       <span className={cn("flex h-9 w-9 shrink-0 items-center justify-center rounded-lg", colors.bg)}>
-                        <Icon className={cn("h-4 w-4", colors.text)} />
+                        <Icon className={cn("h-4 w-4", colors.icon)} />
                       </span>
-                      <span className="font-medium text-foreground">{transaction.description}</span>
+                      <span className="text-base font-medium text-foreground">{transaction.description}</span>
                     </div>
                   </td>
                   <td className="px-6 py-3.5 text-muted-foreground">{formatDate(transaction.date)}</td>
@@ -182,23 +182,30 @@ export function TransactionsPage() {
                     <span
                       className={cn(
                         "flex items-center gap-1.5 font-medium",
-                        isIncome ? "text-success" : "text-destructive"
+                        isIncome ? "text-category-green-text" : "text-category-red-text"
                       )}
                     >
-                      {isIncome ? <CircleArrowUp className="h-4 w-4" /> : <CircleArrowDown className="h-4 w-4" />}
+                      {isIncome ? (
+                        <CircleArrowUp className="h-4 w-4 text-primary" />
+                      ) : (
+                        <CircleArrowDown className="h-4 w-4 text-category-red-icon" />
+                      )}
                       {isIncome ? "Entrada" : "Saída"}
                     </span>
                   </td>
-                  <td
-                    className={cn(
-                      "px-6 py-3.5 text-right font-semibold",
-                      isIncome ? "text-success" : "text-destructive"
-                    )}
-                  >
+                  <td className="px-6 py-3.5 text-right font-semibold text-foreground">
                     {isIncome ? "+" : "-"} {formatCurrency(transaction.amount)}
                   </td>
                   <td className="px-6 py-3.5">
                     <div className="flex justify-end gap-2">
+                      <Button
+                        variant="outline-destructive"
+                        size="icon"
+                        onClick={() => setDeletingTransaction(transaction)}
+                        aria-label="Excluir"
+                      >
+                        <Trash className="h-4 w-4" />
+                      </Button>
                       <Button
                         variant="outline"
                         size="icon"
@@ -208,15 +215,7 @@ export function TransactionsPage() {
                         }}
                         aria-label="Editar"
                       >
-                        <Pencil className="h-4 w-4" />
-                      </Button>
-                      <Button
-                        variant="outline-destructive"
-                        size="icon"
-                        onClick={() => setDeletingTransaction(transaction)}
-                        aria-label="Excluir"
-                      >
-                        <Trash2 className="h-4 w-4" />
+                        <SquarePen className="h-4 w-4" />
                       </Button>
                     </div>
                   </td>
@@ -228,7 +227,7 @@ export function TransactionsPage() {
       </div>
 
       {transactionsPage && transactionsPage.total > 0 && (
-        <div className="flex flex-wrap items-center justify-between gap-3 text-sm text-muted-foreground">
+        <div className="flex flex-wrap items-center justify-between gap-3 text-sm text-foreground-muted">
           <span>
             {(page - 1) * PAGE_SIZE + 1} a {Math.min(page * PAGE_SIZE, transactionsPage.total)} |{" "}
             {transactionsPage.total} resultados
