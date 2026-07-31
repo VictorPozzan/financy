@@ -27,7 +27,7 @@ export function DialogContent({
           <DialogPrimitive.Close asChild>
             <button
               type="button"
-              className="absolute right-6 top-6 flex h-9 w-9 items-center justify-center rounded-lg border border-border text-muted-foreground hover:bg-secondary"
+              className="absolute right-6 top-6 flex h-9 w-9 items-center justify-center rounded-lg border border-input text-foreground-muted hover:bg-secondary"
               aria-label="Fechar"
             >
               <X className="h-4 w-4" />
