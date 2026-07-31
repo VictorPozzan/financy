@@ -1,4 +1,4 @@
-# Financy — Backend
+# Financy - Backend
 
 API GraphQL para gestão de finanças pessoais: cadastro/login de usuários e CRUD de categorias e transações, com isolamento de dados por usuário.
 
@@ -7,7 +7,7 @@ API GraphQL para gestão de finanças pessoais: cadastro/login de usuários e CR
 - Cadastro de conta e login (JWT)
 - Categorias: criar, listar, editar, excluir (bloqueado se houver transações vinculadas)
 - Transações: criar, listar (com filtros por descrição/tipo/categoria/período e paginação), editar, excluir
-- Cada usuário só enxerga e só consegue alterar os próprios dados — validado em toda query/mutation, não só na listagem
+- Cada usuário só enxerga e só consegue alterar os próprios dados validado em toda query/mutation, não só na listagem
 
 ## Stack
 
@@ -61,19 +61,19 @@ src/
   index.ts             bootstrap: Express + CORS + Apollo Server + buildSchema (code-first)
   models/              tipos GraphQL de saída (@ObjectType)
   dtos/
-    input/              @InputType — payloads de mutations/queries
+    input/              @InputType payloads de mutations/queries
     output/              @ObjectType compostos (ex.: resposta de auth, resumo do dashboard)
-  resolvers/            @Resolver — uma classe por domínio (auth, user, category, transaction)
+  resolvers/            @Resolver uma classe por domínio (auth, user, category, transaction)
   services/              regras de negócio + acesso ao Prisma (chamado pelos resolvers)
   middlewares/
-    auth.middleware.ts    IsAuth — bloqueia resolvers para quem não está autenticado
+    auth.middleware.ts    IsAuth bloqueia resolvers para quem não está autenticado
   graphql/context/       extrai e valida o JWT do header Authorization em cada request
   utils/
     jwt.ts                sign/verify do token
     hash.ts               hash/compare de senha (bcryptjs)
 ```
 
-**Padrão de camadas**: `Resolver → Service → Prisma`. Resolvers nunca acessam o Prisma diretamente; toda regra de negócio (e toda checagem de posse — "esse registro é mesmo do usuário logado?") vive na camada de `services`. O `schema.graphql` na raiz do projeto é **gerado automaticamente** pelo `buildSchema` a partir dos decorators — não deve ser editado à mão.
+**Padrão de camadas**: `Resolver → Service → Prisma`. Resolvers nunca acessam o Prisma diretamente; toda regra de negócio (e toda checagem de posse "esse registro é mesmo do usuário logado?") vive na camada de `services`. O `schema.graphql` na raiz do projeto é **gerado automaticamente** pelo `buildSchema` a partir dos decorators não deve ser editado à mão.
 
 ## Testando a API
 

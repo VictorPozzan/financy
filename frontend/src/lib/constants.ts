@@ -45,13 +45,13 @@ export function getCategoryIcon(icon: string): LucideIcon {
 }
 
 export interface CategoryColorClasses {
-  /** dark shade — badge/tag text, "Entrada"/"Saída" label */
+  /** dark shade badge/tag text, "Entrada"/"Saída" label */
   text: string;
-  /** base shade (text utility) — icon fill inside colored square */
+  /** base shade (text utility) icon fill inside colored square */
   icon: string;
-  /** base shade (background utility) — color-picker swatch */
+  /** base shade (background utility) color-picker swatch */
   swatch: string;
-  /** light shade — badge/tag background, icon square background */
+  /** light shade badge/tag background, icon square background */
   bg: string;
 }
 

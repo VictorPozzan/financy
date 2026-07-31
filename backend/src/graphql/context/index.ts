@@ -25,7 +25,7 @@ export async function buildContext({
       const payload = verifyJwt(token);
       user = payload.id;
     } catch {
-      // token inválido/expirado — segue sem usuário; IsAuth barra o acesso quando necessário
+      // token inválido/expirado segue sem usuário; IsAuth barra o acesso quando necessário
     }
   }
 

@@ -1,4 +1,4 @@
-# Financy — Frontend
+# Financy - Frontend
 
 SPA React que consome a API GraphQL do backend para gestão de finanças pessoais. Layout fiel ao [Style Guide do Figma](https://www.figma.com/community/file/1580994817007013257) do projeto.
 
@@ -34,7 +34,7 @@ A aplicação sobe em `http://localhost:5173`.
 
 | Variável | Descrição |
 |---|---|
-| `VITE_BACKEND_URL` | URL base da API GraphQL do backend (sem `/graphql` no final — é acrescentado automaticamente pelo Apollo Client). Ex.: `http://localhost:4000` |
+| `VITE_BACKEND_URL` | URL base da API GraphQL do backend (sem `/graphql` no final é acrescentado automaticamente pelo Apollo Client). Ex.: `http://localhost:4000` |
 
 ## Scripts
 
@@ -79,5 +79,5 @@ Cores, tipografia (Inter) e ícones ([Lucide](https://lucide.dev)) foram extraí
 
 ## Notas de implementação
 
-- O cache do Apollo Client é limpo (`apolloClient.clearStore()`) em login, cadastro e logout — evita que dados de uma sessão anterior vazem para o próximo usuário autenticado no mesmo navegador.
+- O cache do Apollo Client é limpo (`apolloClient.clearStore()`) em login, cadastro e logout evita que dados de uma sessão anterior vazem para o próximo usuário autenticado no mesmo navegador.
 - Formulários usam React Hook Form + Zod; os dois modais (transação/categoria) resetam os campos via `useEffect` ao abrir, permitindo reuso do mesmo componente para criar e editar.
