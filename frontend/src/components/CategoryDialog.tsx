@@ -96,11 +96,9 @@ export function CategoryDialog({ open, onOpenChange, category, onSaved }: Catego
           </div>
 
           <div className="space-y-2">
-            <div className="flex items-baseline justify-between">
-              <Label htmlFor="description">Descrição</Label>
-              <span className="text-xs text-muted-foreground">Opcional</span>
-            </div>
+            <Label htmlFor="description">Descrição</Label>
             <Input id="description" placeholder="Descrição da categoria" {...register("description")} />
+            <p className="text-xs text-subtle-foreground">Opcional</p>
           </div>
 
           <Controller
@@ -119,8 +117,10 @@ export function CategoryDialog({ open, onOpenChange, category, onSaved }: Catego
                         type="button"
                         onClick={() => field.onChange(iconName)}
                         className={cn(
-                          "flex h-9 w-9 items-center justify-center rounded-lg border text-muted-foreground transition-colors",
-                          active ? "border-primary text-primary" : "border-border hover:bg-secondary"
+                          "flex h-9 w-9 items-center justify-center rounded-lg border transition-colors",
+                          active
+                            ? "border-primary bg-background text-foreground-muted"
+                            : "border-input text-subtle-foreground hover:bg-secondary"
                         )}
                         aria-label={iconName}
                       >
@@ -149,12 +149,13 @@ export function CategoryDialog({ open, onOpenChange, category, onSaved }: Catego
                         type="button"
                         onClick={() => field.onChange(colorName)}
                         className={cn(
-                          "h-8 w-8 rounded-lg ring-offset-2 transition-shadow",
-                          CATEGORY_COLORS[colorName].swatch,
-                          active && "ring-2 ring-foreground"
+                          "flex h-[30px] w-[50px] items-center justify-center rounded-lg border transition-colors",
+                          active ? "border-primary bg-background" : "border-input"
                         )}
                         aria-label={colorName}
-                      />
+                      >
+                        <span className={cn("h-5 w-10 rounded", CATEGORY_COLORS[colorName].swatch)} />
+                      </button>
                     );
                   })}
                 </div>
