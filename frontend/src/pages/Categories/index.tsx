@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { useMutation, useQuery } from "@apollo/client/react";
-import { ArrowUpDown, Pencil, Plus, Tag, Trash2 } from "lucide-react";
+import { ArrowUpDown, Plus, SquarePen, Tag, Trash } from "lucide-react";
 import { toast } from "sonner";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -68,24 +68,24 @@ export function CategoriesPage() {
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
         <Card className="flex items-center gap-3">
-          <Tag className="h-5 w-5 text-muted-foreground" />
+          <Tag className="h-5 w-5 text-subtle-foreground" />
           <div>
-            <p className="text-xl font-bold text-foreground">{stats.totalCategories}</p>
-            <p className="text-xs text-muted-foreground">total de categorias</p>
+            <p className="text-3xl font-bold text-foreground">{stats.totalCategories}</p>
+            <p className="text-xs text-subtle-foreground">total de categorias</p>
           </div>
         </Card>
         <Card className="flex items-center gap-3">
-          <ArrowUpDown className="h-5 w-5 text-muted-foreground" />
+          <ArrowUpDown className="h-5 w-5 text-subtle-foreground" />
           <div>
-            <p className="text-xl font-bold text-foreground">{stats.totalTransactions}</p>
-            <p className="text-xs text-muted-foreground">total de transações</p>
+            <p className="text-3xl font-bold text-foreground">{stats.totalTransactions}</p>
+            <p className="text-xs text-subtle-foreground">total de transações</p>
           </div>
         </Card>
-        <Card className="flex items-center gap-3">
-          <MostUsedIcon className="h-5 w-5 text-muted-foreground" />
-          <div>
-            <p className="text-xl font-bold text-foreground">{stats.mostUsed?.title ?? "-"}</p>
-            <p className="text-xs text-muted-foreground">categoria mais utilizada</p>
+        <Card className="flex min-w-0 items-center gap-3">
+          <MostUsedIcon className="h-5 w-5 shrink-0 text-subtle-foreground" />
+          <div className="min-w-0">
+            <p className="truncate text-3xl font-bold text-foreground">{stats.mostUsed?.title ?? "-"}</p>
+            <p className="text-xs text-subtle-foreground">categoria mais utilizada</p>
           </div>
         </Card>
       </div>
@@ -102,9 +102,17 @@ export function CategoriesPage() {
             <Card key={category.id} className="flex flex-col gap-3">
               <div className="flex items-center justify-between">
                 <span className={cn("flex h-10 w-10 items-center justify-center rounded-lg", colors.bg)}>
-                  <Icon className={cn("h-5 w-5", colors.text)} />
+                  <Icon className={cn("h-5 w-5", colors.icon)} />
                 </span>
                 <div className="flex gap-2">
+                  <Button
+                    variant="outline-destructive"
+                    size="icon"
+                    onClick={() => setDeletingCategory(category)}
+                    aria-label="Excluir"
+                  >
+                    <Trash className="h-4 w-4" />
+                  </Button>
                   <Button
                     variant="outline"
                     size="icon"
@@ -114,15 +122,7 @@ export function CategoriesPage() {
                     }}
                     aria-label="Editar"
                   >
-                    <Pencil className="h-4 w-4" />
-                  </Button>
-                  <Button
-                    variant="outline-destructive"
-                    size="icon"
-                    onClick={() => setDeletingCategory(category)}
-                    aria-label="Excluir"
-                  >
-                    <Trash2 className="h-4 w-4" />
+                    <SquarePen className="h-4 w-4" />
                   </Button>
                 </div>
               </div>
