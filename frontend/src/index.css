@@ -1,0 +1,67 @@
+@import "tailwindcss";
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+@import "@fontsource/inter/700.css";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --color-background: #f8f9fa;
+  --color-foreground: #111827;
+
+  --color-card: #ffffff;
+  --color-card-foreground: #111827;
+
+  --color-primary: #1f6f43;
+  --color-primary-hover: #124b2b;
+  --color-primary-foreground: #ffffff;
+
+  --color-secondary: #f3f4f6;
+  --color-secondary-foreground: #111827;
+
+  --color-muted: #f3f4f6;
+  --color-muted-foreground: #6b7280;
+
+  --color-border: #e5e7eb;
+  --color-input: #e5e7eb;
+  --color-ring: #1f6f43;
+
+  --color-destructive: #ef4444;
+  --color-destructive-foreground: #ffffff;
+  --color-success: #19ad70;
+
+  --color-category-gray-text: #374151;
+  --color-category-gray-bg: #f3f4f6;
+  --color-category-blue-text: #1d4ed8;
+  --color-category-blue-bg: #dbeafe;
+  --color-category-purple-text: #7e22ce;
+  --color-category-purple-bg: #f3e8ff;
+  --color-category-pink-text: #be185d;
+  --color-category-pink-bg: #fce7f3;
+  --color-category-red-text: #b91c1c;
+  --color-category-red-bg: #fee2e2;
+  --color-category-orange-text: #c2410c;
+  --color-category-orange-bg: #ffedd5;
+  --color-category-yellow-text: #a16207;
+  --color-category-yellow-bg: #f7f3ca;
+  --color-category-green-text: #15803d;
+  --color-category-green-bg: #e0fae9;
+}
+
+:root {
+  color-scheme: light;
+}
+
+* {
+  border-color: var(--color-border);
+}
+
+body {
+  margin: 0;
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
