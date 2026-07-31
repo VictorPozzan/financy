@@ -3,7 +3,7 @@ import { useMutation } from "@apollo/client/react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { LogOut, User } from "lucide-react";
+import { LogOut, UserRound } from "lucide-react";
 import { toast } from "sonner";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -65,8 +65,8 @@ export function ProfilePage() {
           <Avatar className="h-16 w-16 text-lg">
             <AvatarFallback>{getInitials(user.name)}</AvatarFallback>
           </Avatar>
-          <h1 className="mt-4 text-xl font-bold text-foreground">{user.name}</h1>
-          <p className="text-sm text-muted-foreground">{user.email}</p>
+          <h1 className="mt-4 text-xl font-semibold text-foreground">{user.name}</h1>
+          <p className="text-sm text-subtle-foreground">{user.email}</p>
         </div>
 
         <div className="my-6 border-t border-border" />
@@ -75,7 +75,7 @@ export function ProfilePage() {
           <div className="space-y-2">
             <Label htmlFor="name">Nome completo</Label>
             <div className="relative">
-              <User className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+              <UserRound className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-placeholder" />
               <Input id="name" className="pl-10" {...register("name")} />
             </div>
             {errors.name && <p className="text-sm text-destructive">{errors.name.message}</p>}
@@ -84,7 +84,7 @@ export function ProfilePage() {
           <div className="space-y-2">
             <Label htmlFor="email">E-mail</Label>
             <Input id="email" value={user.email} disabled readOnly />
-            <p className="text-sm text-muted-foreground">O e-mail não pode ser alterado</p>
+            <p className="text-sm text-subtle-foreground">O e-mail não pode ser alterado</p>
           </div>
 
           <Button type="submit" className="w-full" disabled={isSubmitting}>
@@ -92,8 +92,8 @@ export function ProfilePage() {
           </Button>
         </form>
 
-        <Button variant="outline-destructive" className="mt-3 w-full" onClick={handleLogout}>
-          <LogOut className="h-4 w-4" />
+        <Button variant="outline" className="mt-3 w-full" onClick={handleLogout}>
+          <LogOut className="h-4 w-4 text-destructive" />
           Sair da conta
         </Button>
       </div>
