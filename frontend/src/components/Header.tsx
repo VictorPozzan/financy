@@ -25,8 +25,8 @@ export function Header() {
               end={item.to === "/"}
               className={({ isActive }) =>
                 cn(
-                  "text-sm font-medium transition-colors",
-                  isActive ? "text-primary" : "text-muted-foreground hover:text-foreground"
+                  "text-sm transition-colors",
+                  isActive ? "font-semibold text-primary" : "font-normal text-muted-foreground hover:text-foreground"
                 )
               }
             >
