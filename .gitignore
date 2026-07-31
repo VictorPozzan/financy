@@ -1,0 +1,17 @@
+node_modules/
+dist/
+build/
+.env
+*.local
+
+# backend
+backend/prisma/*.db
+backend/prisma/*.db-journal
+backend/schema.graphql
+
+# frontend
+frontend/dist/
+
+# misc
+.DS_Store
+*.log
